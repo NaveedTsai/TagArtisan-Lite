@@ -1,0 +1,898 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+LANGUAGES = {
+    "zh_TW": {  # 繁體中文
+        "title": "檔案標籤管理系統",
+        "file_tag_system": "檔案標籤管理系統",
+        "change_folder": "管理資料夾",
+        "list_untagged": "列出未標籤檔案",
+        "delete_tag": "刪除標籤",
+        "rename_tag": "重新命名標籤",
+        "add_tag": "新增標籤",
+        "remove_tag": "移除標籤",
+        "edit_note": "編輯備註",
+        "export_files": "匯出檔案",
+        "select_export_directory": "選擇匯出目錄",
+        "no_files_selected": "請先選擇要匯出的檔案",
+        "no_valid_files": "選擇的檔案中沒有有效的檔案可以導出",
+        "export_success": "成功匯出 {count} 個檔案",
+        "export_error": "匯出檔案時發生錯誤：{error}",
+        "exporting_files": "正在匯出檔案",
+        "preparing_export": "準備匯出...",
+        "exporting_file": "正在匯出 ({current}/{total}): {filename}",
+        "restore": "還原",
+        "help": "使用說明",
+        "tags": "標籤",
+        "file_list": "檔案列表",
+        "filter_tags": "篩選標籤",
+        "filter_files": "篩選檔案",
+        "file_type": "檔案類型",
+        "current_tag": "當前標籤",
+        "save": "保存",
+        "cancel": "取消",
+        "confirm": "確定",
+        "yes": "是",
+        "no": "否",
+        "success": "成功",
+        "warning": "警告",
+        "error": "錯誤",
+        "info": "提示",
+        "language": "語言",
+        "select_language": "選擇語言",
+        "open_file_location": "開啟檔案位置資料夾",
+        "select_folder": "選擇資料夾",
+        "manage_folders": "管理資料夾",
+        "add_folder": "新增資料夾",
+        "remove_folder": "移除資料夾",
+        "folder_exists": "該資料夾已經被選擇",
+        "confirm_remove_folder": "你確定要移除資料夾嗎？",
+        "no_restore_points": "沒有可用的還原點",
+        "select_restore_point": "選擇還原點",
+        "restore_success": "資料已成功還原",
+        "restore_failed": "還原失敗",
+        "enter_select_tags": "請輸入或選擇至少一個標籤",
+        "tags_added": "標籤已新增",
+        "no_common_tags": "選取的檔案沒有共同的標籤可以移除",
+        "tags_removed": "標籤已移除",
+        "note_too_long": "備註不能超過500字",
+        "note_updated": "備註已更新",
+        "select_files": "請選擇檔案",
+        "select_tag": "請選擇標籤",
+        "confirm_delete_tag": "你確定要刪除標籤 '{tag}' 嗎？此操作將會移除所有使用此標籤的檔案標籤",
+        "file_name": "檔案名稱",
+        "add_tag_to_files": "新增標籤到選擇的檔案 (用 , 分隔):",
+        "add_tag_example": "例如: A, B, C 代表 A/B/C 3 個標籤",
+        "select_from_existing": "從現有標籤中選擇 (可多選):",
+        "filter_existing_tags": "篩選現有標籤",
+        "remove_tags_from_files": "從選擇的檔案中移除標籤 (可多選):",
+        "edit_note_for_file": "為檔案 '{file}' 添加或修改備註 (最多500字):",
+        "rename_tag_title": "重新命名標籤 '{tag}':",
+        "help_title": "使用說明",
+        "help_content": """支援語言:中文/英文/日文
+
+檔案標籤管理系統使用說明：
+
+1. 資料夾管理：
+   - 點擊「管理資料夾」可以新增或移除要管理的資料夾，系統會列出這些資料夾和所有子資料夾的檔案
+
+2. 檔案標籤功能：
+   - 列出未標籤檔案：顯示所有尚未加入標籤的檔案
+   - 新增標籤：選擇檔案後可以新增一或多個標籤
+   - 移除標籤：選擇檔案後可以移除已有的標籤
+   - 編輯備註：可為單一檔案加入備註說明(最多500字)
+
+3. 標籤管理功能：
+   - 點擊左側標籤可以查看使用該標籤的所有檔案
+   - 雙擊標籤可以修改標籤名稱
+   - 右鍵點擊標籤可刪除或重新命名
+   - 右鍵點擊標籤可更改標籤顏色
+
+4. 搜尋與篩選：
+   - 可依檔案名稱搜尋特定檔案
+   - 可依檔案類型篩選顯示的檔案
+   - 可搜尋特定標籤名稱   
+
+5. 標籤視窗功能：
+   - 使用全域快捷鍵（預設Ctrl+1）可快速呼叫標籤視窗
+   - 標籤視窗會顯示所有可用的標籤
+   - 將檔案拖放到標籤視窗中的標籤上即可快速添加標籤
+   - 標籤視窗會在釋放快捷鍵時自動消失
+
+6. 其他功能：
+   - 滑鼠移到檔案上方會顯示完整路徑或備註
+   - 右鍵點擊檔案可開啟檔案所在資料夾
+   - 系統會自動備份標籤資料(50筆最新記錄)，可使用還原功能回復
+   - 拖曳外部檔案到標籤上以添加標籤
+   - 可切換多種主題風格，支援淺色和深色模式
+   - 可自訂全域快捷鍵，快速呼叫標籤視窗
+   - 可將所選擇的檔案列表匯出到指定資料夾
+   - 可匯出所有標籤資料""",
+        "note_prefix": "備註: ",
+        "all_types": "全部類型",
+        "add_tags_instruction": "新增標籤到選擇的檔案 (用 , 分隔):\n例如: A, B, C 代表有 A/B/C 3 個標籤",
+        "select_files_to_tag": "請選擇要新增標籤的檔案！",
+        "select_single_file": "請一次選擇一個檔案來編輯備註",
+        "enter_tag_name": "標籤名稱不能為空！",
+        "tag_renamed": "標籤 '{old}' 已重新命名為 '{new}'",
+        "rename_tag_prompt": "重新命名標籤 '{tag}':",
+        "tags_added": "標籤已新增",
+        "success": "成功",
+        "delete_tag_window": "刪除標籤",
+        "refreshing_files": "正在刷新檔案，請稍候...",
+        "save_failed": "儲存失敗",
+        "file_limit_message": "僅顯示前1000個檔案",
+        "total_files": "個檔案",
+        "folders_updated": "資料夾設定已更新",
+        "drop_on_tag": "請將檔案拖放到指定的標籤上",
+        "confirm_add_tag_to_files": "是否要將標籤 '{tag}' 添加到 {count} 個檔案？",
+        "files_tagged_success": "{count} 個檔案已成功添加標籤 '{tag}'",
+        "no_files_tagged": "沒有檔案被成功添加標籤",
+        "update_available": "有新版本可用",
+        "update_prompt": "發現新版本 {version}，是否要更新？",
+        "unexpected_error": "發生意外錯誤，請稍後再試",
+        "version": "版本",
+        "loading": "正在載入...",
+        "theme": "主題",
+        "select_theme": "選擇主題",
+        "theme_names": {
+            "superhero": "超級英雄",
+            "cosmo": "宇宙",
+            "cyborg": "機器人",
+            "darkly": "暗黑",
+            "flatly": "扁平",
+            "journal": "日誌",
+            "litera": "文學",
+            "lumen": "流明",
+            "minty": "薄荷",
+            "morph": "變形",
+            "pulse": "脈衝",
+            "sandstone": "砂岩",
+            "simplex": "單純",
+            "sketchy": "素描",
+            "slate": "板岩",
+            "solar": "太陽",
+            "spacelab": "太空",
+            "united": "聯合",
+            "vapor": "蒸汽波",
+            "yeti": "雪人",
+            "cerculean": "天藍",
+            "default": "預設",
+            "bootstrap": "Bootstrap",
+            "clam": "蛤蜊",
+            "alt": "替代",
+            "classic": "經典",
+            "vista": "Vista",
+            "xpnative": "XP",
+            "winnative": "Windows",
+            "elegance": "優雅",
+            "beauty": "美麗",
+            "plastik": "塑料",
+            "keramik": "陶瓷",
+            "clearlooks": "清爽",
+            "radiance": "光芒",
+            "kroc": "鱷魚",
+            "breeze": "微風",
+            "arc": "弧形",
+            "equilux": "均光",
+            "adapta": "適應",
+            "ubuntu": "Ubuntu",
+            "aquativo": "水活性",
+            "blue": "藍色",
+            "calm": "平靜",
+            "forest": "森林",
+            "pink": "粉紅",
+            "violet": "紫羅蘭",
+            "winxpblue": "WinXP藍",
+            "yaru": "Yaru"
+        },
+        "default_theme": "預設",
+        "unable_to_open_folder": "無法開啟資料夾",
+        "confirm_delete_multiple_tags": "你確定要刪除這 {count} 個標籤嗎？此操作將會移除所有使用這些標籤的檔案標籤",
+        "processing": "處理中",
+        "processing_folders": "正在處理資料夾，請稍候...",
+        "folder_update_failed": "更新資料夾失敗",
+        "change_color": "更改顏色",
+        "select_color": "選擇顏色",
+        "light": "淺色",
+        "dark": "深色",
+        "edit_hotkey": "編輯快捷鍵",
+        "hotkey_description": "請選擇呼叫標籤視窗的快捷鍵組合。",
+        "hotkey_label": "快捷鍵：",
+        "ok": "確定",
+        "cancel": "取消",
+        "settings": "設定",
+        "modifier": "修飾鍵",
+        "key": "按鍵",
+        "hotkeys": "快捷鍵",
+        "close": "關閉",
+        "export_tags": "匯出標籤",
+        "export_format": "匯出格式：",
+        "export": "匯出",
+        "save_as": "另存新檔",
+        "export_successful": "匯出成功",
+        "export_completed": "標籤資料已成功匯出",
+        "export_failed": "匯出失敗",
+        "import_tags": "匯入標籤",
+        "import_format": "匯入格式：",
+        "import": "匯入",
+        "select_import_file": "選擇匯入檔案",
+        "import_success_title": "匯入成功",
+        "import_success_message": "標籤資料已成功匯入",
+        "import_error_title": "匯入錯誤",
+        "import_error_message": "匯入標籤資料時發生錯誤",
+        "invalid_import_format": "匯入檔案格式無效"
+    },
+    "zh_CN": {  # 简体中文
+        "title": "文件标签管理系统",
+        "file_tag_system": "文件标签管理系统",
+        "change_folder": "管理文件夹",
+        "list_untagged": "列出未标签文件",
+        "delete_tag": "删除标签",
+        "rename_tag": "重命名标签",
+        "add_tag": "新增标签",
+        "remove_tag": "移除标签",
+        "edit_note": "编辑备注",
+        "export_files": "导出文件",
+        "select_export_directory": "选择导出目录",
+        "no_files_selected": "请先选择要导出的文件",
+        "no_valid_files": "选择的文件中没有有效的文件可以导出",
+        "export_success": "成功导出 {count} 个文件",
+        "export_error": "导出文件时发生错误：{error}",
+        "exporting_files": "正在导出文件",
+        "preparing_export": "准备导出...",
+        "exporting_file": "正在导出 ({current}/{total}): {filename}",
+        "restore": "还原",
+        "help": "使用说明",
+        "tags": "标签",
+        "file_list": "文件列表",
+        "filter_tags": "筛选标签",
+        "filter_files": "筛选文件",
+        "file_type": "文件类型",
+        "current_tag": "当前标签",
+        "save": "保存",
+        "cancel": "取消",
+        "confirm": "确定",
+        "yes": "是",
+        "no": "否",
+        "success": "成功",
+        "warning": "警告",
+        "error": "错误",
+        "info": "提示",
+        "language": "语言",
+        "select_language": "选择语言",
+        "open_file_location": "打开文件位置文件夹",
+        "select_folder": "选择文件夹",
+        "manage_folders": "管理文件夹",
+        "add_folder": "新增文件夹",
+        "remove_folder": "移除文件夹",
+        "folder_exists": "该文件夹已经被选择",
+        "confirm_remove_folder": "你确定要移除文件夹吗？",
+        "no_restore_points": "没有可用的还原点",
+        "select_restore_point": "选择还原点",
+        "restore_success": "数据已成功还原",
+        "restore_failed": "还原失败",
+        "enter_select_tags": "请输入或选择至少一个标签",
+        "tags_added": "标签已添加",
+        "no_common_tags": "选取的文件没有共同的标签可以移除",
+        "tags_removed": "标签已移除",
+        "note_too_long": "备注不能超过500字",
+        "note_updated": "备注已更新",
+        "select_files": "请选择文件",
+        "select_tag": "请选择标签",
+        "confirm_delete_tag": "你确定要删除标签 '{tag}' 吗？此操作将会移除所有使用此标签的文件标签",
+        "file_name": "文件名称",
+        "add_tag_to_files": "新增标签到选择的文件 (用 , 分隔):",
+        "add_tag_example": "例如: A, B, C 代表有 A/B/C 3 个标签",
+        "select_from_existing": "从现有标签中选择 (可多选):",
+        "filter_existing_tags": "筛选现有标签",
+        "remove_tags_from_files": "从选择文件中移除标签 (可多选):",
+        "edit_note_for_file": "为文件 '{file}' 添加或修改备注 (最多500字):",
+        "rename_tag_title": "重命名标签 '{tag}':",
+        "help_title": "使用说明",
+        "help_content": """支持语言：中文/英文/日文
+
+文件标签管理系统使用说明：
+
+1. 文件夹管理：
+   - 点击"管理文件夹"可以新增或移除要管理的文件夹，系统会列出这些文件夹和所有子文件夹的文件
+
+2. 文件标签功能：
+   - 列出未标签文件：显示所有尚未加入标签的文件
+   - 新增标签：选择文件后可以新增一或多个标签
+   - 移除标签：选择文件后可以移除已有的标签
+   - 编辑备注：可为单一文件加入备注说明(最多500字)
+
+3. 标签管理功能：
+   - 点击左侧标签可以查看使用该标签的所有文件
+   - 双击标签可以修改标签名称
+   - 右键点击标签可删除或重命名
+   - 右键点击标签可更改标签颜色
+
+4. 搜索与筛选：
+   - 可依文件名称搜索特定文件
+   - 可依文件类型筛选显示的文件
+   - 可搜索特定标签名称
+
+5. 标签窗口功能：
+   - 使用全局快捷键（默认Ctrl+1）可快速调用标签窗口
+   - 标签窗口会显示所有可用的标签
+   - 将文件拖放到标签窗口中的标签上即可快速添加标签
+   - 标签窗口会在释放快捷键时自动消失
+
+6. 其他功能：
+   - 鼠标移到文件上方会显示完整路径或备注
+   - 右键点击文件可打开文件所在文件夹
+   - 系统会自动备份标签数据(50笔最新记录)，可使用还原功能恢复
+   - 拖曳外部文件到标签上以添加标签
+   - 可切换多种主题风格，支持浅色和深色模式
+   - 可自定义全局快捷键，快速调用标签窗口
+   - 可将所选择的文件列表导出到指定文件夹
+   - 可导出所有标签数据""",
+        "note_prefix": "备注: ",
+        "all_types": "全部类型",
+        "add_tags_instruction": "新增标签到选择的文件 (用 , 分隔):\n例如: A, B, C 代表有 A/B/C 3 个标签",
+        "select_files_to_tag": "请选择要新增标签的文件！",
+        "select_single_file": "请一次选择一个文件来编辑备注",
+        "enter_tag_name": "标签名称不能为空！",
+        "tag_renamed": "标签 '{old}' 已重新命名為 '{new}'",
+        "rename_tag_prompt": "重新命名标签 '{tag}':",
+        "tags_added": "标签已添加",
+        "success": "成功",
+        "delete_tag_window": "删除标签",
+        "refreshing_files": "正在刷新文件，请稍候...",
+        "save_failed": "保存失败",
+        "file_limit_message": "仅显示前1000个文件",
+        "total_files": "个文件",
+        "folders_updated": "文件夹设置已更新",
+        "drop_on_tag": "请将文件拖放到指定的标签上",
+        "confirm_add_tag_to_files": "是否要将标签 '{tag}' 添加到 {count} 个文件？",
+        "files_tagged_success": "{count} 个文件已成功添加标签",
+        "no_files_tagged": "没有文件被成功添加标签",
+        "update_available": "有新版本可用",
+        "update_prompt": "发现新版本 {version}，是否要更新？",
+        "unexpected_error": "发生意外错误，请稍后再试",
+        "version": "版本",
+        "loading": "正在加载...",
+        "theme": "主题",
+        "select_theme": "选择主题",
+        "theme_names": {
+            "superhero": "超级英雄",
+            "cosmo": "宇宙",
+            "cyborg": "机器人",
+            "darkly": "暗黑",
+            "flatly": "扁平",
+            "journal": "日志",
+            "litera": "文学",
+            "lumen": "流明",
+            "minty": "薄荷",
+            "morph": "变形",
+            "pulse": "脉冲",
+            "sandstone": "砂岩",
+            "simplex": "单纯",
+            "sketchy": "素描",
+            "slate": "板岩",
+            "solar": "太阳",
+            "spacelab": "太空",
+            "united": "联合",
+            "vapor": "蒸汽波",
+            "yeti": "雪人",
+            "cerculean": "天蓝",
+            "default": "默认",
+            "bootstrap": "Bootstrap",
+            "clam": "蛤蜊",
+            "alt": "替代",
+            "classic": "经典",
+            "vista": "Vista",
+            "xpnative": "XP",
+            "winnative": "Windows",
+            "elegance": "优雅",
+            "beauty": "美丽",
+            "plastik": "塑料",
+            "keramik": "陶瓷",
+            "clearlooks": "清爽",
+            "radiance": "光芒",
+            "kroc": "鳄鱼",
+            "breeze": "微风",
+            "arc": "弧形",
+            "equilux": "均光",
+            "adapta": "适应",
+            "ubuntu": "Ubuntu",
+            "aquativo": "水活性",
+            "blue": "蓝色",
+            "calm": "平静",
+            "forest": "森林",
+            "pink": "粉红",
+            "violet": "紫罗兰",
+            "winxpblue": "WinXP蓝",
+            "yaru": "Yaru"
+        },
+        "default_theme": "默认",
+        "unable_to_open_folder": "无法打开文件夹",
+        "confirm_delete_multiple_tags": "你确定要删除这 {count} 个标签吗？此操作将会移除所有使用这些标签的文件标签",
+        "processing": "处理中",
+        "processing_folders": "正在处理文件夹，请稍候...",
+        "folder_update_failed": "更新文件夹失败",
+        "change_color": "更改颜色",
+        "select_color": "选择颜色",
+        "light": "浅色",
+        "dark": "深色",
+        "edit_hotkey": "编辑快捷键",
+        "hotkey_description": "请选择调用标签窗口的快捷键组合。",
+        "hotkey_label": "快捷键：",
+        "ok": "确定",
+        "cancel": "取消",
+        "settings": "设置",
+        "modifier": "修饰键",
+        "key": "按键",
+        "hotkeys": "快捷键",
+        "close": "关闭",
+        "export_tags": "导出标签",
+        "export_format": "导出格式：",
+        "export": "导出",
+        "save_as": "另存新档",
+        "export_successful": "导出成功",
+        "export_completed": "标签数据已成功导出",
+        "export_failed": "导出失败",
+        "import_tags": "导入标签",
+        "import_format": "导入格式：",
+        "import": "导入",
+        "select_import_file": "选择导入文件",
+        "import_success_title": "导入成功",
+        "import_success_message": "标签数据已成功导入",
+        "import_error_title": "导入错误",
+        "import_error_message": "导入标签数据时发生错误",
+        "invalid_import_format": "导入文件格式无效"
+    },
+    "en_US": {  # 英文
+        "title": "File Tag Management System",
+        "file_tag_system": "File Tag Management System",
+        "change_folder": "Manage Folder",
+        "list_untagged": "List Untagged Files",
+        "delete_tag": "Delete Tag",
+        "rename_tag": "Rename Tag",
+        "add_tag": "Add Tag",
+        "remove_tag": "Remove Tag",
+        "edit_note": "Edit Note",
+        "export_files": "Export Files",
+        "select_export_directory": "Select Export Directory",
+        "no_files_selected": "Please select files to export",
+        "no_valid_files": "No valid files selected for export",
+        "export_success": "Successfully exported {count} files",
+        "export_error": "Error exporting files: {error}",
+        "exporting_files": "Exporting Files",
+        "preparing_export": "Preparing export...",
+        "exporting_file": "Exporting ({current}/{total}): {filename}",
+        "restore": "Restore",
+        "help": "Help",
+        "tags": "Tags",
+        "file_list": "File List",
+        "filter_tags": "Filter Tags",
+        "filter_files": "Filter Files",
+        "file_type": "File Type",
+        "current_tag": "Current Tag",
+        "save": "Save",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "yes": "Yes",
+        "no": "No",
+        "success": "Success",
+        "warning": "Warning",
+        "error": "Error",
+        "info": "Info",
+        "language": "Language",
+        "select_language": "Select Language",
+        "open_file_location": "Open File Location",
+        "select_folder": "Select Folder",
+        "manage_folders": "Manage Folders",
+        "add_folder": "Add Folder",
+        "remove_folder": "Remove Folder",
+        "folder_exists": "This folder has already been selected",
+        "confirm_remove_folder": "Are you sure you want to remove this folder?",
+        "no_restore_points": "No restore points available",
+        "select_restore_point": "Select Restore Point",
+        "restore_success": "Data restored successfully",
+        "restore_failed": "Restore failed",
+        "enter_select_tags": "Please enter or select at least one tag",
+        "tags_added": "Tags added",
+        "no_common_tags": "Selected files have no common tags to remove",
+        "tags_removed": "Tags removed",
+        "note_too_long": "Note cannot exceed 500 characters",
+        "note_updated": "Note updated",
+        "select_files": "Please select files",
+        "select_tag": "Please select a tag",
+        "confirm_delete_tag": "Are you sure you want to delete tag '{tag}'? This will remove the tag from all files",
+        "file_name": "File Name",
+        "add_tag_to_files": "Add tags to selected files (separate with ,):",
+        "add_tag_example": "Example: A, B, C means adding tags A/B/C",
+        "select_from_existing": "Select from existing tags (multiple selection):",
+        "filter_existing_tags": "Filter existing tags",
+        "remove_tags_from_files": "Remove tags from selected files (multiple selection):",
+        "edit_note_for_file": "Add or modify note for file '{file}' (max 500 characters):",
+        "rename_tag_title": "Rename tag '{tag}':",
+        "help_title": "Help",
+        "help_content": """Supported Languages: Chinese/English/Japanese
+
+File Tag Management System User Guide:
+
+1. Folder Management:
+   - Click "Manage Folder" to add or remove managed folders, the system will list files from these folders and all their subfolders
+
+2. File Tagging Features:
+   - List Untagged Files: Display all files without tags
+   - Add Tags: Add one or more tags to selected files
+   - Remove Tags: Remove existing tags from selected files
+   - Edit Notes: Add notes to individual files (max 500 characters)
+
+3. Tag Management:
+   - Click on a tag on the left to view all files with that tag
+   - Double-click a tag to modify its name
+   - Right-click a tag to delete or rename it
+   - Right-click a tag to change its color
+
+4. Search and Filtering:
+   - Search files by filename
+   - Filter files by file type
+   - Search for specific tag names
+
+5. Tag Window Features:
+   - Use global hotkey (default Ctrl+1) to quickly call up the tag window
+   - Tag window displays all available tags
+   - Drag and drop files onto tags in the tag window to quickly add tags
+   - Tag window automatically disappears when the hotkey is released
+
+6. Other Features:
+   - Mouse over files to see full path or notes
+   - Right-click files to open their containing folder
+   - System automatically backs up tag data (keeps 50 latest records), use restore function to recover
+   - Drag external files onto tags to add tags
+   - Switch between multiple theme styles, supporting light and dark modes
+   - Customize global hotkeys for quick access to the tag window
+   - Export selected file list to specified folder
+   - Export all tag data""",
+        "note_prefix": "Note: ",
+        "all_types": "All Types",
+        "add_tags_instruction": "Add tags to selected files (separate with commas):\nExample: A, B, C means 3 tags A/B/C",
+        "select_files_to_tag": "Please select files to tag!",
+        "select_single_file": "Please select one file at a time to edit notes",
+        "enter_tag_name": "Tag name cannot be empty!",
+        "tag_renamed": "Tag '{old}' has been renamed to '{new}'",
+        "rename_tag_prompt": "Rename tag '{tag}':",
+        "tags_added": "Tags added",
+        "success": "Success",
+        "delete_tag_window": "Delete Tag",
+        "current_tag": "Current Tag",
+        "refreshing_files": "Refreshing files, please wait...",
+        "save_failed": "Save failed",
+        "file_limit_message": "Showing first 1000 files only",
+        "total_files": "total files",
+        "folders_updated": "Folder settings updated",
+        "drop_on_tag": "Please drop files on a specific tag",
+        "confirm_add_tag_to_files": "Do you want to add tag '{tag}' to {count} files?",
+        "files_tagged_success": "Successfully added tag to {count} files",
+        "no_files_tagged": "No files were successfully tagged",
+        "update_available": "Update Available",
+        "update_prompt": "New version {version} is available. Would you like to update?",
+        "unexpected_error": "An unexpected error occurred. Please try again later",
+        "version": "Version",
+        "loading": "Loading...",
+        "theme": "Theme",
+        "select_theme": "Select Theme",
+        "theme_names": {
+            "superhero": "Superhero",
+            "cosmo": "Cosmos",
+            "cyborg": "Cyborg",
+            "darkly": "Darkly",
+            "flatly": "Flatly",
+            "journal": "Journal",
+            "litera": "Literature",
+            "lumen": "Lumen",
+            "minty": "Minty",
+            "morph": "Morph",
+            "pulse": "Pulse",
+            "sandstone": "Sandstone",
+            "simplex": "Simplex",
+            "sketchy": "Sketchy",
+            "slate": "Slate",
+            "solar": "Solar",
+            "spacelab": "Space Lab",
+            "united": "United",
+            "vapor": "Vapor",
+            "yeti": "Yeti",
+            "cerculean": "Cerulean",
+            "default": "Default",
+            "bootstrap": "Bootstrap",
+            "clam": "Clam",
+            "alt": "Alternative",
+            "classic": "Classic",
+            "vista": "Vista",
+            "xpnative": "XP",
+            "winnative": "Windows",
+            "elegance": "Elegance",
+            "beauty": "Beauty",
+            "plastik": "Plastic",
+            "keramik": "Ceramic",
+            "clearlooks": "Clear Looks",
+            "radiance": "Radiance",
+            "kroc": "Kroc",
+            "breeze": "Breeze",
+            "arc": "Arc",
+            "equilux": "Equilux",
+            "adapta": "Adapta",
+            "ubuntu": "Ubuntu",
+            "aquativo": "Aquativo",
+            "blue": "Blue",
+            "calm": "Calm",
+            "forest": "Forest",
+            "pink": "Pink",
+            "violet": "Violet",
+            "winxpblue": "WinXP Blue",
+            "yaru": "Yaru"
+        },
+        "default_theme": "Default",
+        "unable_to_open_folder": "Unable to open folder",
+        "confirm_delete_multiple_tags": "Are you sure you want to delete these {count} tags? This will remove all these tags from all files",
+        "processing": "Processing",
+        "processing_folders": "Processing folders, please wait...",
+        "folder_update_failed": "Failed to update folders",
+        "change_color": "Change Color",
+        "select_color": "Select Color",
+        "light": "Light",
+        "dark": "Dark",
+        "edit_hotkey": "Edit Hotkey",
+        "hotkey_description": "Please select the hotkey combination to call the tag window.",
+        "hotkey_label": "Hotkey:",
+        "ok": "OK",
+        "cancel": "Cancel",
+        "settings": "Settings",
+        "modifier": "Modifier",
+        "key": "Key",
+        "hotkeys": "Hotkeys",
+        "close": "Close",
+        "export_tags": "Export Tags",
+        "export_format": "Export Format:",
+        "export": "Export",
+        "save_as": "Save As",
+        "export_successful": "Export Successful",
+        "export_completed": "Tag data has been successfully exported",
+        "export_failed": "Export failed",
+        "import_tags": "Import Tags",
+        "import_format": "Import Format:",
+        "import": "Import",
+        "select_import_file": "Select Import File",
+        "import_success_title": "Import Success",
+        "import_success_message": "Tag data has been successfully imported",
+        "import_error_title": "Import Error",
+        "import_error_message": "An error occurred while importing tag data",
+        "invalid_import_format": "Invalid import file format"
+    },
+    "ja_JP": {  # 日文
+        "title": "ファイルタグ管理システム",
+        "file_tag_system": "ファイルタグ管理システム",
+        "change_folder": "フォルダ管理",
+        "list_untagged": "未タグファイル一覧",
+        "delete_tag": "タグ削除",
+        "rename_tag": "タグ名変更",
+        "add_tag": "タグ追加",
+        "remove_tag": "タグ削除",
+        "edit_note": "メモ編集",
+        "export_files": "エクスポート",
+        "select_export_directory": "エクスポート先フォルダ選択",
+        "no_files_selected": "エクスポートするファイルを選択してください",
+        "no_valid_files": "エクスポートするファイルが選択されていません",
+        "export_success": "{count}個のファイルを正常にエクスポートしました",
+        "export_error": "ファイルエクスポート中にエラーが発生しました：{error}",
+        "exporting_files": "ファイルをエクスポート中",
+        "preparing_export": "エクスポートの準備中...",
+        "exporting_file": "エクスポート中 ({current}/{total}): {filename}",
+        "restore": "復元",
+        "help": "ヘルプ",
+        "tags": "タグ",
+        "file_list": "ファイル一覧",
+        "filter_tags": "タグ絞り込み",
+        "filter_files": "ファイル絞り込み",
+        "file_type": "ファイルタイプ",
+        "current_tag": "現在のタグ",
+        "save": "保存",
+        "cancel": "キャンセル",
+        "confirm": "確認",
+        "yes": "はい",
+        "no": "いいえ",
+        "success": "成功",
+        "warning": "警告",
+        "error": "エラー",
+        "info": "情報",
+        "language": "言語",
+        "select_language": "言語選択",
+        "open_file_location": "ファイルの場所を開く",
+        "select_folder": "フォルダ選択",
+        "manage_folders": "フォルダ管理",
+        "add_folder": "フォルダを追加",
+        "remove_folder": "フォルダを削除",
+        "folder_exists": "このフォルダは既に選択されています",
+        "confirm_remove_folder": "このフォルダを削除してもろしいですか？",
+        "no_restore_points": "利用可能な復元ポイントがありません",
+        "select_restore_point": "復元ポイントを選択",
+        "restore_success": "データを正常に復元しました",
+        "restore_failed": "復元に失敗しました",
+        "enter_select_tags": "少なくとも1つのタグを入力または選択してください",
+        "tags_added": "タグを追加しました",
+        "no_common_tags": "選択したファイルに共通のタグがありません",
+        "tags_removed": "タグを削除しました",
+        "note_too_long": "メモは500文字を超えることはできません",
+        "note_updated": "メモを更新しました",
+        "select_files": "ファイルを選択してください",
+        "select_tag": "タグを選択してください",
+        "confirm_delete_tag": "タグ '{tag}' を削除してもよろしいですか？全てのファイルからこのタグが削除されます",
+        "file_name": "ファイル名",
+        "add_tag_to_files": "選択したファイルにタグを追加 (, で区切る):",
+        "add_tag_example": "例: A, B, C は A/B/C の3つのタグを意味します",
+        "select_from_existing": "既存のタグから選択 (複数選択可):",
+        "filter_existing_tags": "既存のタグを絞り込む",
+        "remove_tags_from_files": "選択したファイルからタグを削除 (複数選択可):",
+        "edit_note_for_file": "ファイル '{file}' のメモを追加または編集 (最大500文字):",
+        "rename_tag_title": "タグ '{tag}' の名前を変更:",
+        "help_title": "ヘルプ",
+        "help_content": """対応言語：中国語/英語/日本語
+
+ファイルタグ管理システムの使用説明：
+
+1. フォルダ管理：
+   - 「フォルダ管理」をクリックして、管理するフォルダを追加または削除、システムはこれらのフォルダとすべてのサブフォルダのファイルを表示します
+
+2. ファイルタグ機能：
+   - 未タグファイル一覧：タグが付いていないファイルをすべて表示
+   - タグ追加：ファイルを選択して1つまたは複数のタグを追加
+   - タグ削除：ファイルを選択して既存のタグを削除
+   - メモ編集：個別のファイルにメモを追加（最大500文字）
+
+3. タグ管理機能：
+   - 左側のタグをクリックすると、そのタグが付いているファイルをすべて表示
+   - タグをダブルクリックして名前を変更
+   - タグを右クリックして削除または名前変更
+   - タグを右クリックして色を変更
+
+4. 検索とフィルタリング：
+   - ファイル名で特定のファイルを検索
+   - ファイルタイプでファイルの表示をフィルタリング
+   - 特定のタグ名で検索
+
+5. タグウィンドウ機能：
+   - グローバルホットキー（デフォルトはCtrl+1）で素早くタグウィンドウを呼び出し
+   - タグウィンドウには利用可能なすべてのタグを表示
+   - ファイルをタグウィンドウのタグにドラッグ＆ドロップして素早くタグを追加
+   - ホットキーを離すとタグウィンドウは自動的に消えます
+
+6. その他の機能：
+   - マウスをファイルの上に移動すると、完全なパスまたはメモを表示
+   - ファイルを右クリックしてファイルの場所を開く
+   - システムは自動的にタグデータをバックアップ（最新50件）、復元機能で回復可能
+   - 外部ファイルをタグにドラッグ＆ドロップしてタグを追加
+   - 複数のテーマスタイルを切り替え可能、ライトモードとダークモードに対応
+   - グローバルホットキーをカスタマイズしてタグウィンドウを素早く呼び出し
+   - 選択したファイルリストを指定フォルダにエクスポート
+   - すべてのタグデータをエクスポート""",
+        "note_prefix": "メモ: ",
+        "all_types": "全種類",
+        "add_tags_instruction": "選択したファイルにタグを追加 (, で区切る):\n例: A, B, C は A/B/C の3つのタグを意味します",
+        "select_files_to_tag": "タグを追加するファイルを選択してください！",
+        "select_single_file": "ファイルを1つずつ選択してメモを編集してください",
+        "enter_tag_name": "タグ名を入力してください",
+        "tag_renamed": "タグ '{old}' を '{new}' に変更しました",
+        "rename_tag_prompt": "タグ '{tag}' の名前を変更:",
+        "tags_added": "タグを追加しました",
+        "success": "成功",
+        "delete_tag_window": "タグを削除",
+        "current_tag": "現在のタグ",
+        "refreshing_files": "ファイルを更新中、お待ちください...",
+        "save_failed": "保存に失敗しました",
+        "file_limit_message": "最初の1000ファイルのみ表示",
+        "total_files": "ファイル合計",
+        "folders_updated": "フォルダ設定が更新されました",
+        "drop_on_tag": "ファイルを指定されたタグにドラッグしてください",
+        "confirm_add_tag_to_files": "タグ '{tag}' を {count} 個のファイルに追加してもよろしいですか？",
+        "files_tagged_success": "{count} 個のファイルにタグ '{tag}' が追加されました",
+        "no_files_tagged": "タグが追加されたファイルはありません",
+        "update_available": "新しいバージョンが利用可能です",
+        "update_prompt": "新しいバージョン {version} が利用可能です。更新しますか？",
+        "unexpected_error": "予期せぬエラーが発生しました。後でもう一度お試しください",
+        "version": "バージョン",
+        "loading": "読み込み中...",
+        "theme": "テーマ",
+        "select_theme": "テーマを選択",
+        "theme_names": {
+            "superhero": "スーパーヒーロー",
+            "cosmo": "コスモス",
+            "cyborg": "サイボーグ",
+            "darkly": "ダークリー",
+            "flatly": "フラットリー",
+            "journal": "ジャーナル",
+            "litera": "リテラ",
+            "lumen": "ルーメン",
+            "minty": "ミンティー",
+            "morph": "モーフ",
+            "pulse": "パルス",
+            "sandstone": "サンドストーン",
+            "simplex": "シンプレックス",
+            "sketchy": "スケッチー",
+            "slate": "スレート",
+            "solar": "ソーラー",
+            "spacelab": "スペースラボ",
+            "united": "ユナイテッド",
+            "vapor": "ベイパー",
+            "yeti": "イエティ",
+            "cerculean": "セルリアン",
+            "default": "デフォルト",
+            "bootstrap": "Bootstrap",
+            "clam": "クラム",
+            "alt": "代替",
+            "classic": "クラシック",
+            "vista": "Vista",
+            "xpnative": "XP",
+            "winnative": "Windows",
+            "elegance": "エレガンス",
+            "beauty": "ビューティー",
+            "plastik": "プラスチック",
+            "keramik": "セラミック",
+            "clearlooks": "クリアルックス",
+            "radiance": "ラディアンス",
+            "kroc": "クロック",
+            "breeze": "ブリーズ",
+            "arc": "アーク",
+            "equilux": "イクイラックス",
+            "adapta": "アダプタ",
+            "ubuntu": "Ubuntu",
+            "aquativo": "アクアティボ",
+            "blue": "ブルー",
+            "calm": "カーム",
+            "forest": "フォレスト",
+            "pink": "ピンク",
+            "violet": "バイオレット",
+            "winxpblue": "WinXPブルー",
+            "yaru": "Yaru"
+        },
+        "default_theme": "デフォルト",
+        "unable_to_open_folder": "フォルダを開けません",
+        "confirm_delete_multiple_tags": "これらの {count} 個のタグを削除してもよろしいですか？全てのファイルからこれらのタグが削除されます",
+        "processing": "処理中",
+        "processing_folders": "フォルダを処理中、お待ちください...",
+        "folder_update_failed": "フォルダの更新に失敗しました",
+        "change_color": "色を変更",
+        "select_color": "色を選択",
+        "light": "ライト",
+        "dark": "ダーク",
+        "edit_hotkey": "ホットキー編集",
+        "hotkey_description": "タグウィンドウを呼び出すホットキーの組み合わせを選択してください。",
+        "hotkey_label": "ホットキー：",
+        "ok": "OK",
+        "cancel": "キャンセル",
+        "settings": "設定",
+        "modifier": "修飾鍵",
+        "key": "按鍵",
+        "hotkeys": "快捷鍵",
+        "close": "閉じる",
+        "export_tags": "タグをエクスポート",
+        "export_format": "エクスポート形式：",
+        "export": "エクスポート",
+        "save_as": "保存",
+        "export_successful": "エクスポート成功",
+        "export_completed": "タグデータが正常にエクスポートされました",
+        "export_failed": "エクスポート失敗",
+        "import_tags": "タグをインポート",
+        "import_format": "インポート形式：",
+        "import": "インポート",
+        "select_import_file": "インポートファイルを選択",
+        "import_success_title": "インポート成功",
+        "import_success_message": "タグデータが正常にインポートされました",
+        "import_error_title": "インポートエラー",
+        "import_error_message": "タグデータのインポート中にエラーが発生しました",
+        "invalid_import_format": "インポートファイルの形式が無効です"
+    }
+}
+
+LANGUAGE_NAMES = {
+    "zh_TW": "繁體中文",
+    "zh_CN": "简体中文",
+    "en_US": "English",
+    "ja_JP": "日本語"
+} 
